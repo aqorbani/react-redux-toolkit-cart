@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ProductsCard from "../components/ProductsCard";
-import { useProducts } from "../context/ProductsContext";
+// import { useProducts } from "../context/ProductsContext";
 import Loading from "../components/Loading";
 import {
   filterProductsByCategory,
@@ -9,14 +9,22 @@ import {
 } from "../helpers/helper";
 import { useSearchParams } from "react-router-dom";
 import SideBar from "../components/SideBar";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "../features/product/productSlice";
 
 const Products = () => {
-  const products = useProducts();
+  const dispatch = useDispatch();
+  const { products, loading } = useSelector((store) => store.product);
+
   const [search, setSearch] = useState("");
   const [displayed, setDisplayed] = useState([]);
   const [query, setQuery] = useState({});
 
   const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, []);
 
   //Defualt useEffect
   useEffect(() => {
@@ -48,7 +56,7 @@ const Products = () => {
           />
         </div>
         <div className="flex flex-wrap justify-between items-center w-full lg:w-5/6">
-          {!displayed.length && <Loading wh={80} />}
+          {loading && <Loading wh={80} />}
           {displayed.map((item) => (
             <ProductsCard key={item.id} data={item} />
           ))}

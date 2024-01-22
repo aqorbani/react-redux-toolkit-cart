@@ -4,8 +4,8 @@ import { IoMdCart } from "react-icons/io";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa";
 import { MdOutlineDeleteForever } from "react-icons/md";
-import { productQuantity, shortenText } from "../helpers/helper";
-import { useCart } from "../context/CartContext";
+import { shortenText } from "../helpers/helper";
+// import { useCart } from "../context/CartContext";
 
 const ProductsCard = ({ data }) => {
   ProductsCard.propTypes = {
@@ -13,13 +13,14 @@ const ProductsCard = ({ data }) => {
   };
   const { id, title, image, price } = data;
 
-  const [state, dispatch] = useCart();
-  console.log(state);
+  // const [state, dispatch] = useCart();
 
-  const quantity = productQuantity(state, id);
+  // const quantity = productQuantity(state, id);
+  const quantity = 0;
 
   const clickHandler = (type) => {
-    dispatch({ type, payload: data });
+    return type;
+    // dispatch({ type, payload: data });
   };
 
   return (
