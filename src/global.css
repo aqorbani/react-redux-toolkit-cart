@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+  @apply p-2 m-1 bg-lime-900 text-white font-extrabold rounded text-xl;
+}
+
+.sign {
+  @apply text-lime-900 font-extrabold text-xl;
+}
+
+.selected-text {
+  @apply text-lime-600 font-bold text-lg;
+}
+
+.hover-text {
+  @apply hover:text-lime-600 hover:font-normal hover:text-lg;
+}
+
