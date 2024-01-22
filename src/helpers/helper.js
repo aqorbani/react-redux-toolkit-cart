@@ -48,6 +48,17 @@ const sumProducts = (products) => {
   return { itemsCounter, total };
 };
 
+const sumPrice = (products) => {
+  const total = products
+    .reduce((acc, cur) => acc + cur.price * cur.quantity, 0)
+    .toFixed(2);
+  return total;
+};
+const sumQuantity = (products) => {
+  const itemsCounter = products.reduce((acc, cur) => acc + cur.quantity, 0);
+  return itemsCounter;
+};
+
 const productQuantity = (state, id) => {
   const index = state.selectedItems.findIndex((item) => item.id === id);
   if (index === -1) {
@@ -65,4 +76,6 @@ export {
   getInitialQuery,
   sumProducts,
   productQuantity,
+  sumPrice,
+  sumQuantity,
 };
