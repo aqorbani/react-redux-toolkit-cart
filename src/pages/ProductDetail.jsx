@@ -3,13 +3,20 @@ import Loading from "../components/Loading";
 import { FaStar } from "react-icons/fa6";
 // import { useCart } from "../context/CartContext";
 // import { productQuantity } from "../helpers/helper";
+import { IoMdCart } from "react-icons/io";
+
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa";
 import { MdOutlineDeleteForever } from "react-icons/md";
-import { IoBagCheckOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchProducts } from "../features/product/productSlice";
+import {
+  addItem,
+  removeItem,
+  increase,
+  decrease,
+} from "../features/cart/cartSlice";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -24,16 +31,15 @@ const ProductDetail = () => {
   );
 
   const { loading } = useSelector((store) => store.product);
+  const { cart } = useSelector((store) => store.cart);
+  console.log(cart)
 
   // const [state, dispatch] = useCart();
 
   // const quantity = productQuantity(state, +id);
   const quantity = 0;
 
-  const clickHandler = (type) => {
-    return type;
-    // dispatch({ type, payload: productDetails });
-  };
+
 
   if (loading) {
     return <Loading />;
@@ -75,7 +81,7 @@ const ProductDetail = () => {
                         {quantity === 1 && (
                           <button
                             className="btn"
-                            onClick={() => clickHandler("REMOVE_ITEM")}
+                            onClick={() => dispatch(removeItem(productDetails))}
                           >
                             <MdOutlineDeleteForever />
                           </button>
@@ -83,7 +89,7 @@ const ProductDetail = () => {
                         {quantity > 1 && (
                           <button
                             className="btn"
-                            onClick={() => clickHandler("DECREASE")}
+                            onClick={() => dispatch(decrease(productDetails))}
                           >
                             <FaMinus />
                           </button>
@@ -93,15 +99,15 @@ const ProductDetail = () => {
                         )}
                         {quantity === 0 ? (
                           <button
-                            className="btn"
-                            onClick={() => clickHandler("ADD_ITEM")}
+                            className="btn w-full flex justify-center"
+                            onClick={() => dispatch(addItem(productDetails))}
                           >
-                            <IoBagCheckOutline />
+                            <IoMdCart />
                           </button>
                         ) : (
                           <button
                             className="btn"
-                            onClick={() => clickHandler("INCREASE")}
+                            onClick={() => dispatch(increase(productDetails))}
                           >
                             <FaPlus />
                           </button>

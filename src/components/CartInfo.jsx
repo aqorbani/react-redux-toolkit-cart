@@ -1,12 +1,12 @@
-import { useCart } from "../context/CartContext";
+import { useDispatch, useSelector } from "react-redux";
 import { MdPayment } from "react-icons/md";
+import { checkout } from "../features/cart/cartSlice";
 
 const CartInfo = () => {
-  const [state, dispatch] = useCart();
+  // const [state, dispatch] = useCart();
+  const state = useSelector((store) => store.cart);
 
-  const clickHandler = (type) => {
-    dispatch({ type });
-  };
+  const dispatch = useDispatch();
 
   return (
     <div className="relative h-64">
@@ -18,7 +18,7 @@ const CartInfo = () => {
       <div>Status : {state.checkout === false ? "Pending" : ""}</div>
       <button
         className="absolute bottom-0 w-full inline-flex flex-grow justify-center items-center rounded-md bg-lime-900 px-2 py-1 text-xs font-bold text-white"
-        onClick={() => clickHandler("CHECKOUT")}
+        onClick={() => dispatch(checkout())}
       >
         <span>Order</span>
         <MdPayment className="p-1 text-2xl" />

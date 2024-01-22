@@ -3,6 +3,7 @@ import { HiMiniShoppingCart } from "react-icons/hi2";
 import PropTypes from "prop-types";
 import { FaReact } from "react-icons/fa6";
 import { SiTailwindcss } from "react-icons/si";
+import { useSelector } from "react-redux";
 // import { useCart } from "../context/CartContext";
 
 const Layout = ({ children }) => {
@@ -11,6 +12,8 @@ const Layout = ({ children }) => {
   };
 
   // const [state] = useCart();
+
+  const state = useSelector((store) => store.cart);
 
   return (
     <>
@@ -29,11 +32,13 @@ const Layout = ({ children }) => {
           to="/checkout"
           className="relative inline-flex items-center rounded-md bg-lime-900 px-2 py-1 text-xs font-bold text-white"
         >
-          {/* {!!state.itemsCounter && (
+          {!!state.itemsCounter && (
             <>
-              <span className="p-1 animate-bounce duration-[2000ms]">{state.itemsCounter}</span>
+              <span className="p-1 animate-bounce duration-[2000ms]">
+                {state.itemsCounter}
+              </span>
             </>
-          )} */}
+          )}
           <HiMiniShoppingCart className="p-1 text-2xl" />
         </Link>
       </header>

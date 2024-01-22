@@ -4,7 +4,14 @@ import { IoMdCart } from "react-icons/io";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa";
 import { MdOutlineDeleteForever } from "react-icons/md";
-import { shortenText } from "../helpers/helper";
+import { productQuantity, shortenText } from "../helpers/helper";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addItem,
+  decrease,
+  increase,
+  removeItem,
+} from "../features/cart/cartSlice";
 // import { useCart } from "../context/CartContext";
 
 const ProductsCard = ({ data }) => {
@@ -15,13 +22,11 @@ const ProductsCard = ({ data }) => {
 
   // const [state, dispatch] = useCart();
 
-  // const quantity = productQuantity(state, id);
-  const quantity = 0;
+  const state = useSelector((store) => store.cart);
 
-  const clickHandler = (type) => {
-    return type;
-    // dispatch({ type, payload: data });
-  };
+  const dispatch = useDispatch();
+
+  const quantity = productQuantity(state, id);
 
   return (
     <div className="w-full md:w-1/5 md:mb-10 m-2 p-3 bg-white border border-gray-200 rounded-lg shadow overflow-hidden">
@@ -34,12 +39,12 @@ const ProductsCard = ({ data }) => {
       <p className="p-2">${price}</p>
       <div className="flex justify-between p-3">
         {quantity === 1 && (
-          <button className="btn" onClick={() => clickHandler("REMOVE_ITEM")}>
+          <button className="btn" onClick={() => dispatch(removeItem(data))}>
             <MdOutlineDeleteForever />
           </button>
         )}
         {quantity > 1 && (
-          <button className="btn" onClick={() => clickHandler("DECREASE")}>
+          <button className="btn" onClick={() => dispatch(decrease(data))}>
             <FaMinus />
           </button>
         )}
@@ -47,12 +52,12 @@ const ProductsCard = ({ data }) => {
         {quantity === 0 ? (
           <button
             className="btn w-full flex justify-center"
-            onClick={() => clickHandler("ADD_ITEM")}
+            onClick={() => dispatch(addItem(data))}
           >
             <IoMdCart />
           </button>
         ) : (
-          <button className="btn" onClick={() => clickHandler("INCREASE")}>
+          <button className="btn" onClick={() => dispatch(increase(data))}>
             <FaPlus />
           </button>
         )}
