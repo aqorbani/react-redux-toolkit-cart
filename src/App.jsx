@@ -3,16 +3,12 @@ import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import Checkout from "./pages/Checkout";
 import PageNotFound from "./pages/PageNotFound";
-// import ProductsProvider from "./context/ProductsContext";
-// import CartProvider from "./context/CartContext";
-import Layout from "./layouts/layout";
+import Layout from "./layouts/Layout";
 import { Provider } from "react-redux";
 import store from "./app/store";
 
 function App() {
   return (
-    // <CartProvider>
-    //   <ProductsProvider>
     <Provider store={store}>
       <Layout>
         <Routes>
@@ -24,8 +20,6 @@ function App() {
         </Routes>
       </Layout>
     </Provider>
-    // </ProductsProvider>
-    // </CartProvider>
   );
 }
 

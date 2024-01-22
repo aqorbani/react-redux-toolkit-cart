@@ -1,12 +1,9 @@
 import CartCard from "../components/CartCard";
 import { useSelector } from "react-redux";
 import CartInfo from "../components/CartInfo";
-// import { useCart } from "../context/CartContext";
 
 const Checkout = () => {
-  // const [state] = useCart();
   const state = useSelector(store=>store.cart)
-  // console.log(state.selectedItems);
   if (state.selectedItems.length == 0) {
     return (
       <p className="flex justify-center py-32 m-2 bg-white border border-gray-200 rounded-lg shadow">

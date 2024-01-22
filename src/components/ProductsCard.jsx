@@ -12,15 +12,12 @@ import {
   increase,
   removeItem,
 } from "../features/cart/cartSlice";
-// import { useCart } from "../context/CartContext";
 
 const ProductsCard = ({ data }) => {
   ProductsCard.propTypes = {
     data: PropTypes.any,
   };
   const { id, title, image, price } = data;
-
-  // const [state, dispatch] = useCart();
 
   const state = useSelector((store) => store.cart);
 

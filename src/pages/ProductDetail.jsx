@@ -1,8 +1,6 @@
 import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import { FaStar } from "react-icons/fa6";
-// import { useCart } from "../context/CartContext";
-// import { productQuantity } from "../helpers/helper";
 import { IoMdCart } from "react-icons/io";
 
 import { FaPlus } from "react-icons/fa6";
@@ -34,9 +32,6 @@ const ProductDetail = () => {
   const { cart } = useSelector((store) => store.cart);
   console.log(cart)
 
-  // const [state, dispatch] = useCart();
-
-  // const quantity = productQuantity(state, +id);
   const quantity = 0;
 
 

@@ -4,14 +4,11 @@ import PropTypes from "prop-types";
 import { FaReact } from "react-icons/fa6";
 import { SiTailwindcss } from "react-icons/si";
 import { useSelector } from "react-redux";
-// import { useCart } from "../context/CartContext";
 
 const Layout = ({ children }) => {
   Layout.propTypes = {
     children: PropTypes.object,
   };
-
-  // const [state] = useCart();
 
   const state = useSelector((store) => store.cart);
 

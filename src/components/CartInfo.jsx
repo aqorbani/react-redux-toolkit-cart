@@ -3,7 +3,6 @@ import { MdPayment } from "react-icons/md";
 import { checkout } from "../features/cart/cartSlice";
 
 const CartInfo = () => {
-  // const [state, dispatch] = useCart();
   const state = useSelector((store) => store.cart);
 
   const dispatch = useDispatch();

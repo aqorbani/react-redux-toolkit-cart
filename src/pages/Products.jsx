@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import ProductsCard from "../components/ProductsCard";
-// import { useProducts } from "../context/ProductsContext";
 import Loading from "../components/Loading";
 import {
   filterProductsByCategory,
